@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package fieldoption.proto.v1;
+
+option go_package = "fieldoption/proto/v1";
+
+import "google/protobuf/descriptor.proto";
+
+extend google.protobuf.FieldOptions {
+  optional string db_column = 50001;  // 데이터베이스 컬럼 이름
+  optional bool primary_key = 50002;  // 기본키 여부
+  optional bool index = 50003;        // 인덱스 필요 여부
+  optional string db_type = 50004;    // 데이터베이스 타입
+}
+
+message User {
+  string id = 1 [
+    (db_column) = "user_id",
+    (primary_key) = true,
+    (db_type) = "VARCHAR(36)"
+  ];
+
+  string email = 2 [
+    (db_column) = "email_address",
+    (index) = true,
+    (db_type) = "VARCHAR(255)"
+  ];
+
+  int32 age = 3 [
+    (db_column) = "user_age",
+    (db_type) = "INTEGER"
+  ];
+}
