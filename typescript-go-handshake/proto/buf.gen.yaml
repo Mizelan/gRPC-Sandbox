@@ -1,0 +1,21 @@
+version: v2
+managed:
+  enabled: true
+  disable:
+    - file_option: go_package
+      module: buf.build/googleapis/googleapis
+  override:
+    - file_option: go_package_prefix
+      value: typescript-go-handshake/proto/gen
+clean: true
+plugins:
+  - remote: buf.build/protocolbuffers/go:v1.31.0
+    out: go
+    opt: paths=source_relative
+  - remote: buf.build/grpc/go:v1.3.0
+    out: go
+    opt: paths=source_relative
+  - remote: buf.build/bufbuild/es:v2.2.2
+    out: ts
+    opt:
+      - target=ts

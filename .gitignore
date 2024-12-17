@@ -25,3 +25,7 @@ go.work
 
 # etc
 .DS_Store
+
+# node
+node_modules
+dist
